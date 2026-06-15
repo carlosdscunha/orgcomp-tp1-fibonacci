@@ -4,20 +4,20 @@ section .data
 
     bA      db  0
     bB      db  1
-    wValor  dw  0
+    wValor  db  0
 
 section .text
     global _start
-    global last
+    global encerrar
 
 _start:
     mov al, byte[bA]
     mov bl, byte[bB]
 
     add bl, al
-    mov dword[wValor], bl
+    mov byte[wValor], bl
 
-last:
+encerrar:
     mov rax, SYS_exit
     mov rdi, EXIT_SUCCESSO
     syscall
