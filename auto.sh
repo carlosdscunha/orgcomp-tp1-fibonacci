@@ -17,7 +17,7 @@ fi
 
 
 # Compilar YASM e link
-yasm -Worphan-labels -g dwarf2 -f elf64 "$1.asm" -l "$1.lst"
+yasm -g dwarf2 -f elf64 "$1.asm" -l "$1.lst"
 
 # Verificar erro pós compilar
 if [ ! -e "$1.lst" ]; then
@@ -40,4 +40,5 @@ fi
 # Depurar GDB
 chmod +x "$1.out"
 
-gdb "$1.out"
+gdb "$1.out" \
+    -ex "break _start" -ex "layout asm" -ex "layout regs" -ex "run"

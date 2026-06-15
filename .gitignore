@@ -3,7 +3,6 @@
 *.out
 a.out
 
-
 # NASM debug files/list
 *.lst
 *.map
@@ -23,5 +22,5 @@ Thumbs.db
 
 
 
-Final executação
+#Final executação
 fibonacci

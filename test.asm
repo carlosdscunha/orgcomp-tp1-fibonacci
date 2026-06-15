@@ -1,23 +1,31 @@
+; Definir os valores iniciais
 section .data
-    EXIT_SUCCESSO   equ 0       ; codigo de sucesso
-    SYS_exit        equ 60      ; codigo para SYS_exit terminar
-
-    bA      db  0
-    bB      db  1
-    wValor  db  0
+    N           dq  5   ; Números da sequência
+    resultado   dq  0   ; Resultar final
 
 section .text
     global _start
-    global encerrar
 
 _start:
-    mov al, byte[bA]
-    mov bl, byte[bB]
+    mov rax, 0          ; Registro A
+    mov rbx, 1          ; Registro B
+    mov rdx, 0          ; Registro Valor
+    mov rcx, qword[N]   ; Registro números da sequência para Loop
 
-    add bl, al
-    mov byte[wValor], bl
+loop_fibonacci:
+    ; valor = A + B
+    add rax, rbx        ; rax + rbx
+    mov rdx, rax        ; atualizar valor
 
-encerrar:
-    mov rax, SYS_exit
-    mov rdi, EXIT_SUCCESSO
+    mov rax, rbx        ; Atualizar rax (A = B)
+    mov rbx, rdx        ; Atualizar valor (B = valor)
+
+    loop loop_fibonacci     ; repetir ou rcx != 0 para terminar
+
+    mov [resultado], rdx    ; Resultado = rdx final
+    jmp fim
+
+fim:
+    mov rax, 60
+    mov rdi, 0
     syscall
