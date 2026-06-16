@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Compilar e Depurar
 
 manter="$2" # Sem limpar para manter arquivo -l ou -o
@@ -14,7 +13,6 @@ if [ ! -e "$1.asm" ]; then
     echo "ERRO: $1.asm não encontrado"
     exit 1
 fi
-
 
 # Compilar YASM e link
 yasm -g dwarf2 -f elf64 "$1.asm" -l "$1.lst"
@@ -39,6 +37,6 @@ fi
 
 # Depurar GDB
 chmod +x "$1.out"
-
+# Abrir e ajustar confin
 gdb "$1.out" \
     -ex "break _start" -ex "layout asm" -ex "layout regs" -ex "run"
