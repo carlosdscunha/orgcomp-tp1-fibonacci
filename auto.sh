@@ -1,10 +1,10 @@
 #!/bin/bash
 # Compilar e Depurar
 
-manter="$2" # Sem limpar para manter arquivo -l ou -o
+manter="$2" # Sem limpar para manter arquivo -l no final comando
 
 if [ -z $1 ]; then
-    echo "Uso esse comando: bash ./auto.sh <asmMainFile>"
+    echo "Uso esse comando: bash ./auto.sh <nomeArquivoAsm>"
     exit 1
 fi
 
@@ -12,6 +12,14 @@ fi
 if [ ! -e "$1.asm" ]; then
     echo "ERRO: $1.asm não encontrado"
     exit 1
+fi
+
+# Limpar arquivos antes compilar
+if [ -e "$1.lst" ]; then
+    rm "$1.lst"
+    if [ -e "$1.o" ]; then
+        rm "$1.o"
+    fi
 fi
 
 # Compilar YASM e link
@@ -23,20 +31,17 @@ if [ ! -e "$1.lst" ]; then
     exit 1
 fi
 
-# Limpar arquivo lista
-if [ "-l" != "$manter" ] && [ -e "$1.lst" ]; then
-    rm "$1.lst"
-fi
-
 ld -g -o "$1.out" "$1.o"
 
-# Limpar arqurvo objeto
-if [ "-o" != "$manter" ] && [ -e "$1.o" ]; then
-    rm "$1.o"
+# Limpar arquivos lista
+if [ "-l" != "$manter" ] && [ -e "$1.lst" ]; then
+    rm "$1.lst" # Arquivos de lista
+    if [ -e "$1.o" ]; then
+        rm "$1.o" # Arqurvo de objeto
+    fi
 fi
 
 # Depurar GDB
 chmod +x "$1.out"
 # Abrir e ajustar confin
-gdb "$1.out" \
-    -ex "break _start" -ex "layout asm" -ex "layout regs" -ex "run"
+gdb "$1.out" -ex "break _start" -ex "layout asm" -ex "layout regs" -ex "run"
