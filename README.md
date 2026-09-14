@@ -25,17 +25,19 @@ $$
 $$
 
 ### Uso Tool Chain
-Script de automação de bash que faz realizar **Compilação** ou **Montagem**, **Linkedição** via **YASM** e abrir o depurador do **GDB**, ajustar automaticamente os layouts. Exemplos a seguir:
 
-- Verificar comando nome do arquivo sem formato, se não sem nome para cancelar **antes de compilar**;
-- Verificar se existe **arquivo de assembly** (`.asm`) entrada;
-- **Compilação** arquivo de objeto e lista (se não manter `-l excluir`)  via **YASM** com `flag -g` para ativar depuração;
-- Verificar se erros pós compilação, não foi gerado arquivo de lista para cancelar de executável ;
-- Gerar um arquivo executável;
-- Limpar os arquivos mortos no disco ou armazenamento;
-- Depuração via **GDB** para abrir com `flags` para ajustar `layouts` e `break point` automático;
+O `auto.sh` parte do script `asm64` do livro do Jorgensen (seção 5.4, Script de Montagem/Linkedição).
+- Acrescentamos: limpeza dos arquivos antigos, parada em caso de erro antes da ligação, a opção -l e a abertura automática do **GDB** com breakpoint e layouts.
+- Script de automação de bash que faz realizar **Compilação** ou **Montagem**, **Linkedição** via **YASM** e abrir o depurador do **GDB**, ajustar automaticamente os layouts. Exemplos a seguir:
+  - Verificar comando nome do arquivo sem formato, se não sem nome para cancelar **antes de compilar**;
+  - Verificar se existe **arquivo de assembly** (`.asm`) entrada;
+  - **Compilação** arquivo de objeto e lista (se não manter `-l excluir`)  via **YASM** com `flag -g` para ativar depuração;
+  - Verificar se erros pós compilação, não foi gerado arquivo de lista para cancelar de executável ; 
+  - Gerar um arquivo executável;
+  - Limpar os arquivos mortos no disco ou armazenamento;
+  - Depuração via **GDB** para abrir com `flags` para ajustar `layouts` e `break point` automático;
   
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="figuras/image-escuro_gdb_depuracao.png">
-   <img alt="GDB depurando o Fibonacci" src="figuras/image-claro_gdb_depuracao.png">
-  </picture>
+    <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="figuras/image-escuro_gdb_depuracao.png">
+     <img alt="GDB depurando o Fibonacci" src="figuras/image-claro_gdb_depuracao.png">
+    </picture>
