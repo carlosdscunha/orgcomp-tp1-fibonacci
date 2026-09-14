@@ -1,8 +1,12 @@
 
-# Fibonacci em Essembly x86-64 
-Grupo de Trabalho - Disciplina de Organização de Computadores
+# Fibonacci em Assembly x86-64
+## Disciplina de Organização de Computadores
 
-## A sequência de Fibonacci
+### Grupo de Trabalho
+ - Carlos Daniel
+ - Paulo
+
+### A sequência de Fibonacci
 Cada número é a soma dos seus dois antecessores:
 
 $$1 \quad 1 \quad 2 \quad 3 \quad 5 \quad 8 \quad 13 \quad 21 \quad 34$$
@@ -20,7 +24,7 @@ $$
 \end{array}
 $$
 
-## Uso Tool Chain
+### Uso Tool Chain
 Script de automação de bash que faz realizar **Compilação** ou **Montagem**, **Linkedição** via **YASM** e abrir o depurador do **GDB**, ajustar automaticamente os layouts. Exemplos a seguir:
 
 - Verificar comando nome do arquivo sem formato, se não sem nome para cancelar **antes de compilar**;
@@ -30,3 +34,8 @@ Script de automação de bash que faz realizar **Compilação** ou **Montagem**,
 - Gerar um arquivo executável;
 - Limpar os arquivos mortos no disco ou armazenamento;
 - Depuração via **GDB** para abrir com `flags` para ajustar `layouts` e `break point` automático;
+  
+  <picture>
+  <source media="(prefers-color-scheme: dark)" srcset="figuras/image-escuro_gdb_depuracao.png">
+   <img alt="GDB depurando o Fibonacci" src="figuras/image-claro_gdb_depuracao.png">
+  </picture>
